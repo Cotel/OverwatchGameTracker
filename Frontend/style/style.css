@@ -1,0 +1,29 @@
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: #EEE !important;
+    color: #584F4A !important;
+}
+
+h1, h2, h3 {
+    color: #FAA02E !important;
+}
+
+.panel {
+    background-color: #fff !important;
+}
+
+#container {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+#chart-container {
+    height: 300px;
+    width: 100%;
+}
