@@ -2,16 +2,51 @@ html, body {
     margin: 0;
     width: 100%;
     height: 100%;
-    background: #EEE !important;
-    color: #584F4A !important;
+    background: #222 !important;
+    color: #ddd !important;
 }
 
 h1, h2, h3 {
+    color: #ddd !important;
+}
+
+a {
     color: #FAA02E !important;
 }
 
+.navbar {
+    background-color: #141414 !important; 
+}
+
+.bg-success, .bg-error {
+    color: #222 !important;
+}
+
+.table>tbody>tr>th {
+    border-top: 1px solid #ddd !important;
+}
+
+.table>thead>tr>th {
+    border-bottom: 1px solid #ddd !important
+}
+
 .panel {
-    background-color: #fff !important;
+    background-color: #584F4A !important;
+    border: 0px solid #ddd !important;
+    border-radius: 0px !important;
+}
+
+.panel-heading {
+    background-color: #584F4A !important;
+    border-bottom: 1px dashed #ddd !important;
+}
+
+#game-list > .panel-body {
+    padding: 0px;
+}
+
+#game-list-table {
+    margin: 0px;
 }
 
 #container {
@@ -25,5 +60,14 @@ h1, h2, h3 {
 
 #chart-container {
     height: 300px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+#chart-container > .panel {
+    height: 300px;
+    width: 100%;
+}
+#chart-container > .panel > .panel-body {
+    height: 250px;
     width: 100%;
 }

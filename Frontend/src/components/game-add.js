@@ -19,7 +19,6 @@ class GameAdd extends Component {
 
 	handleSubmit(values) {
 		this.props.addGame(values);
-		this.props.getChartData();
 	}
 
 	renderField = ({input, label, id, type, meta: {touched, error}}) => {
@@ -57,7 +56,7 @@ class GameAdd extends Component {
 	render() {
 		const {handleSubmit} = this.props;
 		return (
-			<Panel>
+			<Panel header={<h3>Add Game</h3>}>
 				<Form horizontal onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
 					<Field name="map" id="mapInput" type="select" label="Map" component={this.renderField} />
 					<Field type="input" id="dateInput" type="datetime-local" name="date" label="Date" component={this.renderField} />

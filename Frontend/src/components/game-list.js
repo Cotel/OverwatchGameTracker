@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {showGames, selectGame} from '../actions';
+import {showGames} from '../actions';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {Panel, Table, Glyphicon} from 'react-bootstrap';
 import moment from 'moment';
 
 class GameList extends Component {
@@ -12,50 +13,46 @@ class GameList extends Component {
 
 	renderGameList() {
 		return this.props.games.map((game) => {
-			return (
-				<li><a href="#" key={game.id} onClick={() => this.props.selectGame(game)}>{game.map}</a></li>
-			)
-		})
-	}
-
-	renderActiveGame() {
-		if(this.props.activeGame) {
-			const resDate = moment(this.props.activeGame.date)
-			if(this.props.activeGame.winned) {
+			if(game.winned) {
 				return (
-					<div className="bg-success">
-						<strong>{this.props.activeGame.map}</strong>
-						<p>Date: {resDate.format("DD-MM-YYYY HH:mm")}</p>
-						<p>Winned</p>
-					</div>
+					<tr key={game.id}>
+						<th>{game.map}</th>
+						<th>{moment(game.date).format("DD-MM-YYYY")}</th>
+						<th>{moment(game.date).format("HH:mm")}</th>
+						<th><Glyphicon glyph="ok" /></th>
+					</tr>
 				)
 			} else {
 				return (
-					<div className="bg-danger">
-						<strong>{this.props.activeGame.map}</strong>
-						<p>Date: {resDate.format("DD-MM-YYYY HH:mm")}</p>
-						<p>Lost</p>
-					</div>
+					<tr key={game.id}>
+						<th>{game.map}</th>
+						<th>{moment(game.date).format("DD-MM-YYYY")}</th>
+						<th>{moment(game.date).format("HH:mm")}</th>
+						<th><Glyphicon glyph="remove" /></th>
+					</tr>
 				)
 			}
-		} else {
-			return (
-				<div></div>
-			)
-		}
+		})
 	}
 
     render() {
         return (
 			<div>
-				<div>
-					<h2>Game List</h2>
-					<ul>{this.renderGameList()}</ul>
-				</div>
-				<div>
-					<h2>Game details</h2>
-					<div>{this.renderActiveGame()}</div>
-				</div>
+				<Panel header={<h3>Recent Games</h3>} id="game-list">
+					<Table responsive id="game-list-table">
+						<thead>
+							<tr>
+								<th>Map</th>
+								<th>Date</th>
+								<th>Time</th>
+								<th>Winned</th>
+							</tr>
+						</thead>
+						<tbody>
+							{this.renderGameList()}
+						</tbody>
+					</Table>					
+				</Panel>
 			</div>
         )
     }
@@ -64,16 +61,13 @@ class GameList extends Component {
 
 function mapStateToProps(state) {
     return {
-        games: state.game.list,
-		activeGame: state.game.activeGame,
-		chartData: state.chart.chartData
+        games: state.game.list.slice(1).slice(-5)
     }
 }
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		selectGame: selectGame,
-		showGames: showGames,
+		showGames: showGames
 	}, dispatch)
 }
  

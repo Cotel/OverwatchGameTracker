@@ -51,6 +51,17 @@ export function addGame(values) {
                     }
                 )
             })
+            .then(() => {
+                axios.get("http://localhost:8080/api/chartData")
+                    .then((response) => {
+                        dispatch (
+                            {
+                                type: GET_CHART_DATA,
+                                payload: response.data
+                            }
+                        )
+                    })
+            })
     }
 }
 
