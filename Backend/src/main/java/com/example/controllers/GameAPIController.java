@@ -26,6 +26,9 @@ public class GameAPIController {
         for(Game g : repository.findAll()) {
             games.add(g);
         }
+        games.sort((o1, o2) -> {
+            return o1.getDate().compareTo(o2.getDate());
+        });
         return games;
     }
 
